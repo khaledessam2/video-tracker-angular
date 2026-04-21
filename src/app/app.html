@@ -1,0 +1,23 @@
+<main class="min-h-screen bg-gray-900 text-white p-8">
+  <div class="max-w-2xl mx-auto">
+    <h1 class="text-3xl font-bold mb-2 text-center text-red-500">Video Tracker</h1>
+    <p class="text-center text-gray-400 mb-8 text-sm">Paste a YouTube or Vimeo link to track your watch progress</p>
+
+    <div class="flex gap-2 mb-3">
+      <input type="url" [(ngModel)]="urlInputValue" placeholder="YouTube or Vimeo URL..."
+        class="flex-1 px-4 py-2 rounded-lg bg-gray-800 border border-gray-700 focus:outline-none focus:border-red-500 text-white placeholder-gray-500"
+        (keydown.enter)="submitUrl()"/>
+      <button (click)="submitUrl()" class="px-6 py-2 bg-red-600 hover:bg-red-700 rounded-lg font-semibold transition-colors cursor-pointer">
+        Track
+      </button>
+    </div>
+
+    @if (urlError()) {
+      <p class="text-red-400 text-sm mb-4">Invalid URL. Please enter a valid YouTube or Vimeo link.</p>
+    }
+
+    @if (currentVideo(); as video) {
+      <app-video-player [videoId]="video.id" [provider]="video.provider" />
+    }
+  </div>
+</main>

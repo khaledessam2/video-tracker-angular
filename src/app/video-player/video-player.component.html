@@ -1,0 +1,17 @@
+<div class="video-player-wrapper">
+  <div #playerContainer [attr.data-plyr-provider]="provider" [attr.data-plyr-embed-id]="videoId"></div>
+  <div class="progress-info">
+    <div class="progress-bar-track">
+      <div class="progress-bar-fill" [style.width.%]="watchedPercentage()"></div>
+    </div>
+    <div class="progress-details">
+      <span class="percentage-label">Watched: {{ watchedPercentage() }}%</span>
+      @if (formattedSavedTime()) {
+        <span class="resume-label">Resume from {{ formattedSavedTime() }}</span>
+      }
+      @if (savedTime() > 0) {
+        <button class="reset-btn" (click)="resetProgress()">Reset</button>
+      }
+    </div>
+  </div>
+</div>
